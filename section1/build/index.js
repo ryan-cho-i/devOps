@@ -35,11 +35,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createApp = void 0;
 const express_1 = __importDefault(require("express"));
 const redis = __importStar(require("redis"));
 const PORT = 4000;
 const LIST_KEY = 'messages';
-const creatApp = () => __awaiter(void 0, void 0, void 0, function* () {
+const createApp = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, express_1.default)();
     const client = redis.createClient({ url: 'redis://localhost:6379' });
     yield client.connect();
@@ -59,7 +60,8 @@ const creatApp = () => __awaiter(void 0, void 0, void 0, function* () {
     }));
     return app;
 });
-creatApp().then((app) => {
+exports.createApp = createApp;
+(0, exports.createApp)().then((app) => {
     app.listen(PORT, () => {
         console.log(`App listening at port ${PORT}`);
     });

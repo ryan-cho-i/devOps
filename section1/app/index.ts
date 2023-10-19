@@ -1,11 +1,11 @@
 import express from 'express';
 import * as redis from 'redis';
 
-const PORT = 4000;
+const PORT = 4001;
 
 const LIST_KEY = 'messages';
 
-export const creatApp = async () => {
+export const createApp = async () => {
   const app = express();
 
   const client = redis.createClient({ url: 'redis://localhost:6379' });
@@ -33,7 +33,7 @@ export const creatApp = async () => {
   return app;
 };
 
-creatApp().then((app) => {
+createApp().then((app) => {
   app.listen(PORT, () => {
     console.log(`App listening at port ${PORT}`);
   });
